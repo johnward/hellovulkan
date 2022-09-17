@@ -1,0 +1,9 @@
+{
+  "makefile.launchConfigurations": [
+    {
+      "cwd": "/home/john/Dropbox/Dell15_Projects/Projects/vulkan/hellovulkan",
+      "binaryPath": "/home/john/Dropbox/Dell15_Projects/Projects/vulkan/hellovulkan/VulkanTest",
+      "binaryArgs": []
+    }
+  ]
+}
