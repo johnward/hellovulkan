@@ -39,6 +39,21 @@ private:
     void initVulkan()
     {
         createInstance();
+
+        // Get number of extentions available
+        uint32_t extensionCount = 0;
+        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+
+        // Now get the actual extensions
+        std::vector<VkExtensionProperties> extensions(extensionCount);
+        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
+
+        std::cout << "available extensions:\n";
+
+        for (const auto& extension : extensions) 
+        {
+            std::cout << '\t' << extension.extensionName << '\n';
+        }
     }
 
     void createInstance() 
@@ -80,21 +95,6 @@ private:
         {
             throw std::runtime_error("failed to create instance!");
         }
-
-        // Get number of extentions available
-        uint32_t extensionCount = 0;
-        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
-
-        // Now get the actual extensions
-        std::vector<VkExtensionProperties> extensions(extensionCount);
-        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
-
-        std::cout << "available extensions:\n";
-
-        for (const auto& extension : extensions) 
-        {
-            std::cout << '\t' << extension.extensionName << '\n';
-        }
     }
 
     void mainLoop()
@@ -107,6 +107,8 @@ private:
 
     void cleanup()
     {
+        vkDestroyInstance(instance, nullptr);
+        
         glfwDestroyWindow(window);
 
         glfwTerminate();
