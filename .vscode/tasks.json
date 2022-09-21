@@ -18,6 +18,8 @@
                 "-lvulkan",
                 "-ldl",
                 "-lpthread",
+                "-std=c++17", 
+                "-O2"
                 //"-lX11", 
                 //"-lXxf86vm", 
                 //"-lXrandr", 
